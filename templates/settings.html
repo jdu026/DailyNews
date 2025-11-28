@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>뉴스 알림 설정</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input[type="url"], input[type="text"], input[type="time"] {
+            width: 98%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .message { margin-top: 20px; padding: 10px; background-color: #d4edda; color: #155724; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>자동 뉴스 알림 설정</h1>
+        <form method="POST">
+            <div>
+                <label for="webhook_url">디스코드 웹훅 URL:</label>
+                <input type="url" id="webhook_url" name="webhook_url"
+                       value="{{ config.webhook_url if config else '' }}" required
+                       placeholder="https://discord.com/api/webhooks/..." size="60">
+            </div>
+            <div>
+                <label for="keyword">뉴스 키워드:</label>
+                <input type="text" id="keyword" name="keyword"
+                       value="{{ config.keyword if config else 'AI 반도체' }}" required
+                       placeholder="예: AI 반도체">
+            </div>
+            <div>
+                <label for="alert_time">알림 시간 (HH:MM):</label>
+                <input type="time" id="alert_time" name="alert_time"
+                       value="{{ config.alert_time if config else '08:00' }}" required>
+            </div>
+            <button type="submit">설정 저장</button>
+        </form>
+
+        {% if config %}
+            <p class="message">✅ **현재 설정 저장됨:** 키워드: {{ config.keyword }}, 알림 시간: {{ config.alert_time }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

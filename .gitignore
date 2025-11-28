@@ -1,0 +1,22 @@
+# Dailynews/.gitignore
+
+# 1. 가상 환경 폴더 제외 (프로젝트 구조 이미지에서 venv 폴더 확인됨)
+venv/
+.venv/
+
+# 2. 파이썬이 자동 생성하는 파일 제외
+__pycache__/
+*.pyc
+
+# 3. 데이터베이스 파일 제외 (사용자님이 설정한 파일명)
+user_configs.db
+*.db
+*.sqlite
+
+# 4. 민감 정보 파일 제외 (키가 포함된 파일)
+config.py
+.env # (환경 변수 파일로 분리할 경우)
+
+# 5. IDE 설정 파일 제외 (PyCharm 등)
+.idea/
+.vscode/
